@@ -16,8 +16,11 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
 data = pd.read_csv('United_States_Offense_Type_by_Agency_2019.csv')
-stateFile = json.load(open('gz_2010_us_040_00_20m.json', 'r'))
-states = stateFile['features']
+
+with open('gz_2010_us_040_00_20m.json', 'r', encoding="utf-8") as f:
+    stateFile = json.load(f)
+    states = stateFile['features']
+
 # take state name
 name, location, totalCrimes, stateName = [], [], [], []
 # adding all states in name[]
@@ -60,7 +63,7 @@ app.layout = html.Div([html.Label('Crimes in the United States in 2019'),
                        dcc.Dropdown(id='myDropdown',
                                     options=[{'label': 'Crimes per State', 'value': 'trig'},
                                              {'label': 'Total for each crime', 'value': 'Crime'}],
-                                    value='Crime', style={"width": "50%"}, clearable=False),
+                                    value='trig', style={"width": "50%"}, clearable=False),
                        dcc.Graph(id='crime-graph', style={'width': '180vh', 'height': '90vh'},)])
 
 # call back
@@ -69,23 +72,23 @@ app.layout = html.Div([html.Label('Crimes in the United States in 2019'),
     [Input(component_id='myDropdown', component_property='value')])
 
 def graph_type(myDropdown):
-    """creates the bar and map graphs"""
+    """creates the bar and map graphs depending on dropdown value crime or trig"""
     if myDropdown == 'Crime':
         blop = px.bar(df, x=myDropdown, y='Amount', color='Crime')
         return blop
-    else:
-        trig = px.choropleth(data, geojson=stateFile, locations=stateName,
-                             featureidkey='properties.NAME',
-                             color=totalCrimes, color_continuous_scale="viridis",
-                             range_color=(0, 900000),
-                             scope='usa', labels={'State Total': 'Total Crimes Committed'})
 
-        trig.update_layout(title='Total Crimes per State 2019',
-                           geo={"scope":'usa', "projection": {"type": 'albers usa'},
-                                    "showlakes": True, "lakecolor": 'rgb(204, 224, 255)'},
-                           coloraxis_colorbar_title_text="Amount of Crimes")
+    trig = px.choropleth(data, geojson=stateFile, locations=stateName,
+                         featureidkey='properties.NAME',
+                         color=totalCrimes, color_continuous_scale="viridis",
+                         range_color=(0, 900000),
+                         scope='usa', labels={'State Total': 'Total Crimes Committed'})
 
-        return trig
+    trig.update_layout(title='Total Crimes per State 2019',
+                       geo={"scope":'usa', "projection": {"type": 'albers usa'},
+                                "showlakes": True, "lakecolor": 'rgb(204, 224, 255)'},
+                       coloraxis_colorbar_title_text="Amount of Crimes")
+
+    return trig
 
 if __name__ == '__main__':
     # this lets us have auto refresh to the graph when data is changed
