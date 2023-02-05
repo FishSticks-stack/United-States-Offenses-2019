@@ -3,14 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FederalCrime.iml" filepath="$PROJECT_DIR$/.idea/FederalCrime.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../GPU/.idea/GPU.iml" filepath="$PROJECT_DIR$/../GPU/.idea/GPU.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../blankTest/.idea/blankTest.iml" filepath="$PROJECT_DIR$/../blankTest/.idea/blankTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../fileRead/.idea/fileRead.iml" filepath="$PROJECT_DIR$/../fileRead/.idea/fileRead.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../imageScraper/.idea/imageScraper.iml" filepath="$PROJECT_DIR$/../imageScraper/.idea/imageScraper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../imageTest/.idea/imageTest.iml" filepath="$PROJECT_DIR$/../imageTest/.idea/imageTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../lists/.idea/lists.iml" filepath="$PROJECT_DIR$/../lists/.idea/lists.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../randomNumberList/.idea/randomNumberList.iml" filepath="$PROJECT_DIR$/../randomNumberList/.idea/randomNumberList.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../receipt/.idea/receipt.iml" filepath="$PROJECT_DIR$/../receipt/.idea/receipt.iml" />
     </modules>
   </component>
 </project>
